@@ -92,3 +92,9 @@ if ( !defined('ABSPATH') )
 
 /** Réglage des variables de WordPress et de ses fichiers inclus. */
 require_once(ABSPATH . 'wp-settings.php');
+
+/** Impossible de localiser le répertoire racine de WordPress. */
+if(is_admin()){
+    add_filter('filesystem_method', create_function('$a', 'return "direct";' ));
+    define( 'FS_CHMOD_DIR', 0751 );
+}
